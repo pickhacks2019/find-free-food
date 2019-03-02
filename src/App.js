@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { SimpleMap } from './Map.js';
+import { FoodMap } from './Map.js';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <SimpleMap />
+        <FoodMap />
+        <div className="SideBar">
+          Insert free food here !!!
+        </div>
       </div>
     );
   }

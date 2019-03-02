@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-function MediaCard(props) {
+function FoodCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
@@ -51,8 +51,8 @@ function MediaCard(props) {
   );
 }
 
-MediaCard.propTypes = {
+FoodCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MediaCard);
+export default withStyles(styles)(FoodCard);

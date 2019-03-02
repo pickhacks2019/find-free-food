@@ -21,62 +21,70 @@ const styles = {
 
 function FoodCard(props) {
   const { classes, food_type } = props;
-  
-  function get_image(food_type) {
-    switch(food_type) {
-      case "Pizza":
+
+  function getImage(food_type) {
+    switch (food_type) {
+      case 'Pizza':
         return 'images/alex.jpg';
-      
+
       case "Lee's Chicken":
         return 'images/lees.jpg';
-      
-      case "Bread Co.":
+
+      case 'Bread Co.':
         return 'images/bread.jpg';
-      
-      case "Lizard":
+
+      case 'Lizard':
+        return 'images/liz.jpg';
+
+      default:
         return 'images/liz.jpg';
     }
   }
 
-  function get_description(food_type) {
-    switch(food_type) {
-      case "Pizza":
-        return "You better BELIEVE it 🍕🍕🍕🍕🍕";
-      
+  function getDescription(food_type) {
+    switch (food_type) {
+      case 'Pizza':
+        return 'You better BELIEVE it 🍕🍕🍕🍕🍕';
+
       case "Lee's Chicken":
-        return "You know you love it.";
-      
-      case "Bread Co.":
-        return "Thanks to our sponsor...";
-      
-      case "Lizard":
+        return 'You know you love it.';
+
+      case 'Bread Co.':
+        return 'Thanks to our sponsor...';
+
+      case 'Lizard':
         return 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica';
+
+      default:
+        return 'whoops';
     }
+  }
+  
+  function showOnMap() {
+    console.log(food_type)
   }
 
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <CardActionArea onClick={showOnMap}>
         <CardMedia
           className={classes.media}
-          image={get_image(food_type)}
+          image={getImage(food_type)}
           title={food_type}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {food_type}
           </Typography>
-          <Typography component="p">
-            {get_description(food_type)}
-          </Typography>
+          <Typography component="p">{getDescription(food_type)}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button size="small" color="primary" onClick={showOnMap}>
+          Show On Map
         </Button>
         <Button size="small" color="primary">
-          Learn More
+          Share
         </Button>
       </CardActions>
     </Card>

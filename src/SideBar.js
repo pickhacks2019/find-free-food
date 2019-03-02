@@ -33,7 +33,7 @@ const styles = theme => ({
 });
 
 function CenteredGrid(props) {
-  const { classes } = props;
+  const { classes, onCardClick} = props;
 
   return (
     <div className={classes.root}>
@@ -42,7 +42,7 @@ function CenteredGrid(props) {
           props.foodData.map((datum) => {
             return (
               <Grid className={classes.card} item xs={11}>
-                <FoodCard food_type={datum.food} />
+                <FoodCard foodType={datum.food} entryKey={datum.key} onCardClick={onCardClick} />
               </Grid>
             )
           })

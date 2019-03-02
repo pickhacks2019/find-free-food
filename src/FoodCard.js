@@ -20,10 +20,10 @@ const styles = {
 };
 
 function FoodCard(props) {
-  const { classes, food_type } = props;
+  const { classes, foodType, entryKey, onCardClick } = props;
 
-  function getImage(food_type) {
-    switch (food_type) {
+  function getImage(foodType) {
+    switch (foodType) {
       case 'Pizza':
         return 'images/alex.jpg';
 
@@ -41,8 +41,8 @@ function FoodCard(props) {
     }
   }
 
-  function getDescription(food_type) {
-    switch (food_type) {
+  function getDescription(foodType) {
+    switch (foodType) {
       case 'Pizza':
         return 'You better BELIEVE it 🍕🍕🍕🍕🍕';
 
@@ -61,7 +61,7 @@ function FoodCard(props) {
   }
   
   function showOnMap() {
-    console.log(food_type)
+    onCardClick(entryKey);
   }
 
   return (
@@ -69,14 +69,14 @@ function FoodCard(props) {
       <CardActionArea onClick={showOnMap}>
         <CardMedia
           className={classes.media}
-          image={getImage(food_type)}
-          title={food_type}
+          image={getImage(foodType)}
+          title={foodType}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {food_type}
+            {foodType}
           </Typography>
-          <Typography component="p">{getDescription(food_type)}</Typography>
+          <Typography component="p">{getDescription(foodType)}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>

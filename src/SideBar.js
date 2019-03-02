@@ -41,7 +41,7 @@ function CenteredGrid(props) {
         {
           props.foodData.map((datum) => {
             return (
-              <Grid className={classes.card} item xs={11}>
+              <Grid key={datum.key} className={classes.card} item xs={11}>
                 <FoodCard foodType={datum.food} entryKey={datum.key} onCardClick={onCardClick} />
               </Grid>
             )

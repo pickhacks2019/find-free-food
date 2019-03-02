@@ -32,17 +32,25 @@ const foodData = [
 
 class App extends Component {
   state = {
-    mapDisplayKey: null,
+    mapDisplayPosition: {
+      // S&T's lat/lng
+      lat: 37.954825,
+      lng: -91.773491,
+    },
   };
 
   showOnMap = (key) => {
-    this.setState({ mapDisplayKey: key });
+    foodData.forEach((datum) => {
+      if (datum.key === key) {
+        this.setState({ mapDisplayPosition: datum.position });
+      }
+    });
   };
 
   render() {
     return (
       <div className="App">
-        <FoodMap foodData={foodData} mapDisplayKey={this.state.mapDisplayKey} />
+        <FoodMap foodData={foodData} zoom={17} center={this.state.mapDisplayPosition} />
         <SideBar foodData={foodData} onCardClick={this.showOnMap} />
       </div>
     );

@@ -19,10 +19,14 @@ const styles = theme => ({
     overflowY: 'scroll',
     overflowX: 'hidden',
   },
+  grid: {
+    height: '100vh',
+  },
   card: {
     marginTop: 10, 
     marginLeft: 20,
     marginRight: 20,
+    paddingBottom: 10,
   },
 });
 
@@ -31,7 +35,10 @@ function CenteredGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={20}>
+      <Grid className={classes.grid} container spacing={20}>
+        <Grid className={classes.card} item xs={11}>
+          <Card />
+        </Grid>
         <Grid className={classes.card} item xs={11}>
           <Card />
         </Grid>

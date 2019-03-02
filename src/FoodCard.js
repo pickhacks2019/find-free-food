@@ -20,22 +20,54 @@ const styles = {
 };
 
 function FoodCard(props) {
-  const { classes } = props;
+  const { classes, food_type } = props;
+  
+  function get_image(food_type) {
+    switch(food_type) {
+      case "Pizza":
+        return 'images/alex.jpg';
+      
+      case "Lee's Chicken":
+        return 'images/lees.jpg';
+      
+      case "Bread Co.":
+        return 'images/bread.jpg';
+      
+      case "Lizard":
+        return 'images/liz.jpg';
+    }
+  }
+
+  function get_description(food_type) {
+    switch(food_type) {
+      case "Pizza":
+        return "You better BELIEVE it 🍕🍕🍕🍕🍕";
+      
+      case "Lee's Chicken":
+        return "You know you love it.";
+      
+      case "Bread Co.":
+        return "Thanks to our sponsor...";
+      
+      case "Lizard":
+        return 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica';
+    }
+  }
+
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="images/za.png"
-          title="Pizza"
+          image={get_image(food_type)}
+          title={food_type}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Pizza
+            {food_type}
           </Typography>
           <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {get_description(food_type)}
           </Typography>
         </CardContent>
       </CardActionArea>

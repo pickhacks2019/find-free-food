@@ -39,16 +39,19 @@ function CenteredGrid(props) {
     <div className={classes.root}>
       <Grid className={classes.grid} container spacing={24}>
         <Grid className={classes.card} item xs={11}>
-          <FoodCard />
+          <FoodCard food_type="Pizza" />
         </Grid>
         <Grid className={classes.card} item xs={11}>
-          <FoodCard />
+          <FoodCard food_type="Lee's Chicken" />
         </Grid>
         <Grid className={classes.card} item xs={11}>
-          <FoodCard />
+          <FoodCard food_type="Bread Co." />
         </Grid>
         <Grid className={classes.card} item xs={11}>
-          <FoodCard />
+          <FoodCard food_type="Pizza" />
+        </Grid>
+        <Grid className={classes.card} item xs={11}>
+          <FoodCard food_type="Lizard" />
         </Grid>
       </Grid>
     </div>

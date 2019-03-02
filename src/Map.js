@@ -3,8 +3,6 @@ import GoogleMapReact from 'google-map-react';
  
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
  
-console.log(process.env.REACT_APP_GOOGLE_MAPS_KEY)
-
 export class SimpleMap extends Component {
   static defaultProps = {
     center: {

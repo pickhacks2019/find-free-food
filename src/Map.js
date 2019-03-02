@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Map from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 export class FoodMap extends Component {
   static defaultProps = {
     center: {
@@ -10,8 +8,19 @@ export class FoodMap extends Component {
       lat: 37.954825,
       lng: -91.773491,
     },
-    zoom: 17.5,
+    zoom: 17,
   };
+  
+  renderMarkers = (map, maps) => {
+    this.props.foodData.forEach(function(datum) {
+      let marker = new maps.Marker({
+        title: datum.building,
+        position: datum.position,
+        map,
+      });
+    });
+
+  }
 
   render() {
     return (
@@ -20,13 +29,8 @@ export class FoodMap extends Component {
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_KEY }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={37.954825}
-            lng={-91.773491}
-            text={'Serving S&T since 8pm yesterday.'}
-          />
-        </Map>
+          onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps)}
+        />
       </div>
     );
   }

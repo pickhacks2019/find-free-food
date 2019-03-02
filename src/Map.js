@@ -14,12 +14,11 @@ export class FoodMap extends Component {
   renderMarkers = (map, maps) => {
     this.props.foodData.forEach(function(datum) {
       let marker = new maps.Marker({
-        title: datum.building,
+        title: datum.food + ' in ' + datum.building,
         position: datum.position,
         map,
       });
     });
-
   }
 
   render() {

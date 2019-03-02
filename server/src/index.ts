@@ -2,8 +2,11 @@ import "reflect-metadata";
 import { GraphQLServer } from "graphql-yoga";
 import { createConnection } from "typeorm";
 import { Event } from "./entity/event";
-
-// const EXT = process.env.NODE_ENV !== "production" ? ".ts" : ".js"
+import {
+  CreateEventMutationArgs,
+  DeleteEventMutationArgs,
+  EventQueryArgs
+} from "./types";
 
 createConnection({
   type: "sqlite",
@@ -78,6 +81,26 @@ const typeDefs = `
 `;
 
 const resolvers = {
+  Mutation: {
+    createEvent: async (
+      _,
+      { eventData }: CreateEventMutationArgs
+    ): Promise<Event> => {
+      const event = await Event.create(eventData).save();
+
+      return event;
+    },
+    deleteEvent: async (_, { eventId }: DeleteEventMutationArgs) => {
+      const event = await Event.findOne({ where: { id: eventId } });
+
+      if (event) {
+        await event.remove();
+        return true;
+      }
+
+      return false;
+    }
+  },
   Query: {
     hello: () => "Hello World!",
     events: async () => {
@@ -96,6 +119,11 @@ const resolvers = {
           roomNumber: event.roomNumber
         }
       }));
+    },
+    event: async (_, { eventId }: EventQueryArgs) => {
+      const event = await Event.findOne({ where: { id: eventId } });
+
+      return event;
     }
   }
 };

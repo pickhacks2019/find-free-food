@@ -10,6 +10,7 @@ const foodData = [
     position: { lat: 37.955945, lng: -91.774166 },
     building: 'CS',
     health: 'Not good',
+    time: '3/8 @ 7pm',
   },
   {
     key: 1,
@@ -17,6 +18,7 @@ const foodData = [
     position: { lat: 37.955636, lng: -91.772015 },
     building: 'BCH',
     health: 'Could be better',
+    time: '3/10 @ 9pm',
   },
   {
     key: 2,
@@ -24,6 +26,7 @@ const foodData = [
     position: { lat: 37.954659, lng: -91.776317 },
     building: 'Havener',
     health: 'Awesome',
+    time: '3/8 @ 2pm',
   },
   {
     key: 3,
@@ -31,6 +34,7 @@ const foodData = [
     position: { lat: 37.956193, lng: -91.772381 },
     building: 'EE',
     health: 'N/A',
+    time: '3/7 @ 7pm',
   },
 ];
 
@@ -53,14 +57,16 @@ class App extends Component {
       }
     });
   };
-  
+
   showInfo = key => {
     foodData.forEach(datum => {
       if (datum.key === key) {
-        this.setState({ mapDisplayInfo: {health: datum.health, building: datum.building} });
+        this.setState({
+          mapDisplayInfo: { health: datum.health, building: datum.building, time: datum.time },
+        });
       }
     });
-  }
+  };
 
   render() {
     return (
@@ -73,7 +79,11 @@ class App extends Component {
           showInfo={this.showInfo}
           info={this.state.mapDisplayInfo}
         />
-        <SideBar foodData={foodData} onCardClick={this.showOnMap} />
+        <SideBar 
+          foodData={foodData} 
+          onCardClick={this.showOnMap} 
+          showInfo={this.showInfo}
+          />
       </div>
     );
   }

@@ -27,8 +27,11 @@ export default class Info extends Component {
           <div style={{ paddingBottom: 10 }}>
             Building: <strong>{this.props.info.building}</strong>
           </div>
-          <div>
+          <div style={{ paddingBottom: 10 }}>
             Health Rating: <strong>{this.props.info.health}</strong>
+          </div>
+          <div>
+            Time: <strong>{this.props.info.time}</strong>
           </div>
         </div>
       );

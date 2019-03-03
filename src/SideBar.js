@@ -42,7 +42,7 @@ const styles = theme => ({
 });
 
 function CenteredGrid(props) {
-  const { classes, onCardClick } = props;
+  const { classes, onCardClick, showInfo } = props;
 
   return (
     <div className={classes.root}>
@@ -57,6 +57,7 @@ function CenteredGrid(props) {
                 foodType={datum.food}
                 entryKey={datum.key}
                 onCardClick={onCardClick}
+                showInfo={showInfo}
               />
             </Grid>
           );

@@ -20,7 +20,7 @@ const styles = {
 };
 
 function FoodCard(props) {
-  const { classes, foodType, entryKey, onCardClick } = props;
+  const { classes, foodType, entryKey, onCardClick, showInfo } = props;
 
   function getImage(foodType) {
     switch (foodType) {
@@ -62,6 +62,7 @@ function FoodCard(props) {
   
   function showOnMap() {
     onCardClick(entryKey);
+    showInfo(entryKey);
   }
 
   return (

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Map from 'google-map-react';
+import Info from './Info';
 
 export class FoodMap extends Component {
   renderMarkers = (map, maps) => {
@@ -19,6 +20,7 @@ export class FoodMap extends Component {
       
       if (latDiff < 0.0004 && lngDiff < 0.00005) {
         this.props.onMarkerClick(datum.key);
+        this.props.showInfo(datum.key);
       }
     });
   }
@@ -32,7 +34,9 @@ export class FoodMap extends Component {
           zoom={this.props.zoom}
           onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps)}
           onClick={this.handleMarkerClick}
-        />
+        >
+        </Map>
+        <Info info={this.props.info} />
       </div>
     );
   }

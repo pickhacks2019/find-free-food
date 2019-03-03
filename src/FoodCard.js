@@ -50,7 +50,7 @@ function FoodCard(props) {
         return 'You know you love it.';
 
       case 'Bread Co.':
-        return 'Thanks to our sponsor...';
+        return 'Have you tried their mobile app?';
 
       case 'Lizard':
         return 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica';

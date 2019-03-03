@@ -32,4 +32,4 @@ We learned a LOT about `React`, website deployment, and that hackathons are a lo
 
 We are going to eat some free food 🙏
 
-But seriously, integration with SnapChat would be interesting, as well as making the app more robust in general. We would also like to display how healthy each food option is and add more features to the UI like better searching. And getting rid of the extraneous buttons would be good.
+But seriously, integration with SnapChat would be interesting, as well as making the app more robust in general. We would also like to add more features to the UI like actually being able to add entries to the list of events.

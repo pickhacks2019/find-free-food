@@ -1,13 +1,64 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { SimpleMap } from './Map.js';
+import { FoodMap } from './Map';
+import SideBar from './SideBar';
+
+const foodData = [
+  {
+    key: 0,
+    food: 'Pizza',
+    position: { lat: 37.955945, lng: -91.774166 },
+    building: 'CS',
+  },
+  {
+    key: 1,
+    food: "Lee's Chicken",
+    position: { lat: 37.955636, lng: -91.772015 },
+    building: 'BCH',
+  },
+  {
+    key: 2,
+    food: 'Bread Co.',
+    position: { lat: 37.954659, lng: -91.776317 },
+    building: 'Havener',
+  },
+  {
+    key: 3,
+    food: 'Lizard',
+    position: { lat: 37.956193, lng: -91.772381 },
+    building: 'EE',
+  },
+];
 
 class App extends Component {
+  state = {
+    mapDisplayPosition: {
+      // S&T's lat/lng
+      lat: 37.954825,
+      lng: -91.773491,
+    },
+  };
+
+  showOnMap = key => {
+    foodData.forEach(datum => {
+      if (datum.key === key) {
+        this.setState({ mapDisplayPosition: datum.position }, () => {
+          console.log(datum.position);
+        });
+      }
+    });
+  };
+
   render() {
     return (
       <div className="App">
-      <SimpleMap />
+        <FoodMap
+          foodData={foodData}
+          zoom={17}
+          center={this.state.mapDisplayPosition}
+          onMarkerClick={this.showOnMap}
+        />
+        <SideBar foodData={foodData} onCardClick={this.showOnMap} />
       </div>
     );
   }

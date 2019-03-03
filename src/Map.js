@@ -1,32 +1,38 @@
 import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
- 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
- 
-export class SimpleMap extends Component {
-  static defaultProps = {
-    center: {
-      lat: 59.95,
-      lng: 30.33
-    },
-    zoom: 11
-  };
- 
+import Map from 'google-map-react';
+
+export class FoodMap extends Component {
+  renderMarkers = (map, maps) => {
+    this.props.foodData.forEach(function(datum) {
+      let marker = new maps.Marker({
+        title: datum.food + ' in ' + datum.building,
+        position: datum.position,
+        map,
+      });
+    });
+  }
+
+  handleMarkerClick = (clickInfo) => {
+    this.props.foodData.forEach((datum) => {
+      const latDiff = Math.abs(clickInfo.lat - datum.position.lat)
+      const lngDiff = Math.abs(clickInfo.lng - datum.position.lng)
+      
+      if (latDiff < 0.0004 && lngDiff < 0.00005) {
+        this.props.onMarkerClick(datum.key);
+      }
+    });
+  }
+
   render() {
     return (
-      // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
+      <div className="Map">
+        <Map
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_KEY }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text={'Kreyser Avrora'}
-          />
-        </GoogleMapReact>
+          center={this.props.center}
+          zoom={this.props.zoom}
+          onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps)}
+          onClick={this.handleMarkerClick}
+        />
       </div>
     );
   }

@@ -12,6 +12,17 @@ export class FoodMap extends Component {
     });
   }
 
+  handleMarkerClick = (clickInfo) => {
+    this.props.foodData.forEach((datum) => {
+      const latDiff = Math.abs(clickInfo.lat - datum.position.lat)
+      const lngDiff = Math.abs(clickInfo.lng - datum.position.lng)
+      
+      if (latDiff < 0.0004 && lngDiff < 0.00005) {
+        this.props.onMarkerClick(datum.key);
+      }
+    });
+  }
+
   render() {
     return (
       <div className="Map">
@@ -20,6 +31,7 @@ export class FoodMap extends Component {
           center={this.props.center}
           zoom={this.props.zoom}
           onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps)}
+          onClick={this.handleMarkerClick}
         />
       </div>
     );

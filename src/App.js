@@ -39,10 +39,12 @@ class App extends Component {
     },
   };
 
-  showOnMap = (key) => {
-    foodData.forEach((datum) => {
+  showOnMap = key => {
+    foodData.forEach(datum => {
       if (datum.key === key) {
-        this.setState({ mapDisplayPosition: datum.position });
+        this.setState({ mapDisplayPosition: datum.position }, () => {
+          console.log(datum.position);
+        });
       }
     });
   };
@@ -50,7 +52,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FoodMap foodData={foodData} zoom={17} center={this.state.mapDisplayPosition} />
+        <FoodMap
+          foodData={foodData}
+          zoom={17}
+          center={this.state.mapDisplayPosition}
+          onMarkerClick={this.showOnMap}
+        />
         <SideBar foodData={foodData} onCardClick={this.showOnMap} />
       </div>
     );

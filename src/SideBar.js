@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import FoodCard from './FoodCard';
+import ActionBar from './ActionBar';
 
 const styles = theme => ({
   root: {
@@ -24,29 +25,42 @@ const styles = theme => ({
   grid: {
     height: '100vh',
     width: '95%',
+    display: 'block',
+    paddingTop: 80,
+  },
+  actionBar: {
+    width: '100%',
+    display: 'block',
+    position: 'absolute',
+    top: 0,
   },
   card: {
-    marginTop: 10, 
+    marginTop: 10,
     paddingBottom: 10,
     margin: 'auto',
   },
 });
 
 function CenteredGrid(props) {
-  const { classes, onCardClick} = props;
+  const { classes, onCardClick } = props;
 
   return (
     <div className={classes.root}>
+      <Grid key={-1} className={classes.actionBar} style={{ maxWidth: '100%' }} item xs={11}>
+        <ActionBar />
+      </Grid>
       <Grid className={classes.grid} container spacing={24}>
-        {
-          props.foodData.map((datum) => {
-            return (
-              <Grid key={datum.key} className={classes.card} item xs={11}>
-                <FoodCard foodType={datum.food} entryKey={datum.key} onCardClick={onCardClick} />
-              </Grid>
-            )
-          })
-        }
+        {props.foodData.map(datum => {
+          return (
+            <Grid key={datum.key} className={classes.card} item xs={11}>
+              <FoodCard
+                foodType={datum.food}
+                entryKey={datum.key}
+                onCardClick={onCardClick}
+              />
+            </Grid>
+          );
+        })}
       </Grid>
     </div>
   );

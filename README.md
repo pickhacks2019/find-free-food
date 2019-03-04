@@ -2,7 +2,7 @@
 
 A free food finder for hungry students, student athletes, and everyone in between. [findfreefood.org](https://findfreefood.org)
 
-Built for [Pickhacks](https://pickhacks.io/) 2019 🤙
+Built for [PickHacks](https://pickhacks.io/) 2019 🤙 *Winner of Best Domain registered with [domain.com](https://domain.com)* 
 
 ## Inspiration
 
@@ -14,7 +14,7 @@ The application displays a map of locations where you can find free food on camp
 
 ## How we built it
 
-Our front-end was built using `React` and our back-end was built using 'GraphQL`. We also made use of the Google Maps API & Google Cloud. Caffeinated chocolate helped along the way too.
+Our front-end was built using `React` and our back-end was built using `GraphQL`. We also made use of the Google Maps API & Google Cloud. Caffeinated chocolate helped along the way too.
 
 ## Challenges we ran into
 
